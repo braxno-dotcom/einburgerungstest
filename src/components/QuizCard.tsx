@@ -1,18 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import type { Question } from "@/data/questions";
+import type { Question, Lang } from "@/data/questions";
 
 interface QuizCardProps {
   question: Question;
   onAnswer?: (correct: boolean) => void;
   showExplanationDefault?: boolean;
+  lang: Lang | null;
 }
 
 export default function QuizCard({
   question,
   onAnswer,
   showExplanationDefault = false,
+  lang,
 }: QuizCardProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const answered = selected !== null;
@@ -23,10 +25,17 @@ export default function QuizCard({
     onAnswer?.(index === question.answer);
   };
 
+  const qTrans = lang === "ua" ? question.questionUa : lang === "ru" ? question.questionRu : null;
+  const optTrans = lang === "ua" ? question.optionsUa : lang === "ru" ? question.optionsRu : null;
+  const expTrans = lang === "ua" ? question.explanationUa : lang === "ru" ? question.explanationRu : null;
+
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6">
       <p className="font-medium text-gray-900 mb-1">{question.question}</p>
-      <p className="text-sm text-gray-400 mb-4">{question.questionRu}</p>
+      {lang && qTrans && (
+        <p className="text-sm text-gray-400 mb-3">{qTrans}</p>
+      )}
+      {!lang && <div className="mb-3" />}
       <div className="space-y-2">
         {question.options.map((option, i) => {
           let className =
@@ -52,9 +61,11 @@ export default function QuizCard({
                 {String.fromCharCode(65 + i)}.
               </span>
               {option}
-              <span className="block text-xs text-gray-400 mt-0.5 ml-6">
-                {question.optionsRu[i]}
-              </span>
+              {lang && optTrans && (
+                <span className="block text-xs text-gray-400 mt-0.5 ml-6">
+                  {optTrans[i]}
+                </span>
+              )}
             </button>
           );
         })}
@@ -62,7 +73,9 @@ export default function QuizCard({
       {(answered || showExplanationDefault) && question.explanation && (
         <div className="mt-4 p-4 bg-blue-50 rounded-lg text-sm">
           <p className="text-blue-800">{question.explanation}</p>
-          <p className="text-blue-600 mt-1">{question.explanationRu}</p>
+          {lang && expTrans && (
+            <p className="text-blue-600 mt-1">{expTrans}</p>
+          )}
         </div>
       )}
     </div>

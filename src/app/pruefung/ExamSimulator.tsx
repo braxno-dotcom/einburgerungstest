@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { questions } from "@/data/questions";
+import type { Lang } from "@/data/questions";
 import QuizCard from "@/components/QuizCard";
+import LangToggle from "@/components/LangToggle";
 import Link from "next/link";
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -34,6 +36,7 @@ export default function ExamSimulator() {
     new Array(EXAM_QUESTIONS).fill(null)
   );
   const [timeLeft, setTimeLeft] = useState(EXAM_TIME);
+  const [lang, setLang] = useState<Lang | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const finishExam = useCallback(() => {
@@ -148,13 +151,14 @@ export default function ExamSimulator() {
   return (
     <div>
       {/* Header bar */}
-      <div className="flex items-center justify-between mb-6 bg-white rounded-lg border border-gray-200 p-4">
+      <div className="flex items-center justify-between mb-6 bg-white rounded-lg border border-gray-200 p-4 flex-wrap gap-2">
         <span className="text-sm text-gray-600">
           Frage {currentIndex + 1} / {examQuestions.length}
         </span>
         <span className="text-sm font-medium text-gray-600">
           {correctCount} richtig
         </span>
+        <LangToggle lang={lang} onToggle={setLang} />
         <span
           className={`text-sm font-mono font-medium ${
             timeLeft < 300 ? "text-red-600" : "text-gray-600"
@@ -179,6 +183,7 @@ export default function ExamSimulator() {
         key={currentQuestion.id}
         question={currentQuestion}
         onAnswer={handleAnswer}
+        lang={lang}
       />
 
       {/* Navigation */}
