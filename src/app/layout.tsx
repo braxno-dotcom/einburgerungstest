@@ -36,6 +36,11 @@ export default function RootLayout({
     <html lang="de">
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7529900678975882"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={`${geistSans.variable} antialiased bg-gray-50 min-h-screen`}>
         <ServiceWorkerRegistrar />
