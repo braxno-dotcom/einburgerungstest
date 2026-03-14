@@ -55,6 +55,12 @@ export default function RootLayout({
           </div>
         </nav>
         <main className="max-w-4xl mx-auto px-4 py-8">{children}</main>
+        <footer className="border-t border-gray-200 mt-12 py-6">
+          <div className="max-w-4xl mx-auto px-4 flex gap-4 text-xs text-gray-400">
+            <Link href="/impressum" className="hover:text-gray-600">Impressum</Link>
+            <Link href="/datenschutz" className="hover:text-gray-600">Datenschutz</Link>
+          </div>
+        </footer>
       </body>
     </html>
   );
