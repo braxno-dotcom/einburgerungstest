@@ -13,24 +13,23 @@ export default function LangToggle({ lang, onToggle }: LangToggleProps) {
   };
 
   return (
-    <div className="flex items-center gap-1">
-      <span className="text-xs text-gray-400 mr-1">Перевод:</span>
+    <div className="fixed bottom-6 right-4 z-50 flex items-center gap-1.5 bg-white border border-gray-300 rounded-full px-2 py-1.5 shadow-xl">
       <button
         onClick={() => handleClick("ru")}
-        className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+        className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
           lang === "ru"
-            ? "bg-blue-600 text-white"
-            : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+            ? "bg-blue-600 text-white shadow-md"
+            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
         }`}
       >
         RU
       </button>
       <button
         onClick={() => handleClick("ua")}
-        className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+        className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
           lang === "ua"
-            ? "bg-blue-600 text-white"
-            : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+            ? "bg-blue-600 text-white shadow-md"
+            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
         }`}
       >
         UA

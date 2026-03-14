@@ -49,7 +49,6 @@ export default function TopicQuiz({ questions }: TopicQuizProps) {
               {score}/{answered} richtig
             </span>
           )}
-          <LangToggle lang={lang} onToggle={setLang} />
         </div>
       </div>
 
@@ -64,6 +63,8 @@ export default function TopicQuiz({ questions }: TopicQuizProps) {
           />
         ))}
       </div>
+
+      <LangToggle lang={lang} onToggle={setLang} />
     </div>
   );
 }

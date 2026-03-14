@@ -158,7 +158,6 @@ export default function ExamSimulator() {
         <span className="text-sm font-medium text-gray-600">
           {correctCount} richtig
         </span>
-        <LangToggle lang={lang} onToggle={setLang} />
         <span
           className={`text-sm font-mono font-medium ${
             timeLeft < 300 ? "text-red-600" : "text-gray-600"
@@ -212,6 +211,8 @@ export default function ExamSimulator() {
           </button>
         )}
       </div>
+
+      <LangToggle lang={lang} onToggle={setLang} />
     </div>
   );
 }
