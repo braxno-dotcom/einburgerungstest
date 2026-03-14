@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { topics, questions } from "@/data/questions";
+import TopicCard from "@/components/TopicCard";
 
 export default function Home() {
+  const topicData = topics.map((topic) => ({
+    ...topic,
+    questionIds: questions.filter((q) => q.topic === topic.slug).map((q) => q.id),
+  }));
+
   return (
     <div>
       <section className="text-center py-12">
@@ -25,29 +31,16 @@ export default function Home() {
           Themen zum Lernen
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {topics.map((topic) => {
-            const count = questions.filter(
-              (q) => q.topic === topic.slug
-            ).length;
-            return (
-              <Link
-                key={topic.slug}
-                href={`/themen/${topic.slug}`}
-                className="block bg-white rounded-lg border border-gray-200 p-6 hover:border-blue-300 hover:shadow-md transition-all"
-              >
-                <div className="text-3xl mb-3">{topic.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-1">
-                  {topic.title}
-                </h3>
-                <p className="text-sm text-gray-500 mb-3">
-                  {topic.description}
-                </p>
-                <span className="text-sm text-blue-600 font-medium">
-                  {count} Fragen
-                </span>
-              </Link>
-            );
-          })}
+          {topicData.map((topic) => (
+            <TopicCard
+              key={topic.slug}
+              slug={topic.slug}
+              title={topic.title}
+              description={topic.description}
+              icon={topic.icon}
+              questionIds={topic.questionIds}
+            />
+          ))}
         </div>
       </section>
 

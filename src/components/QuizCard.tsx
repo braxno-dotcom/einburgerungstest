@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Question, Lang } from "@/data/questions";
+import { markQuestion } from "@/lib/progress";
 
 interface QuizCardProps {
   question: Question;
@@ -22,7 +23,9 @@ export default function QuizCard({
   const handleSelect = (index: number) => {
     if (answered) return;
     setSelected(index);
-    onAnswer?.(index === question.answer);
+    const correct = index === question.answer;
+    onAnswer?.(correct);
+    markQuestion(question.id, correct);
   };
 
   const qTrans = lang === "ua" ? question.questionUa : lang === "ru" ? question.questionRu : null;
