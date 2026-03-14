@@ -64,6 +64,7 @@ export default function TopicQuiz({ questions }: TopicQuizProps) {
         ))}
       </div>
 
+      <div className="pb-16" />
       <LangToggle lang={lang} onToggle={setLang} />
     </div>
   );

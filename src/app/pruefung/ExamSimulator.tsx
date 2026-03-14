@@ -212,6 +212,7 @@ export default function ExamSimulator() {
         )}
       </div>
 
+      <div className="pb-16" />
       <LangToggle lang={lang} onToggle={setLang} />
     </div>
   );
