@@ -10,9 +10,15 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Einbuergerungstest Trainer - Alle 300 Fragen mit Erklaerungen",
+  title: "Einbürgerungstest на русском — тест на гражданство Германии | 300 вопросов с переводом",
   description:
-    "Kostenlos fuer den Einbuergerungstest ueben. Alle Fragen nach Themen sortiert mit Erklaerungen und Pruefungssimulation.",
+    "Einbürgerungstest с русским переводом: все 300 вопросов теста на гражданство Германии по темам, с объяснениями. Бесплатная подготовка. Einbürgerungstest kostenlos üben — alle Fragen mit Erklärungen.",
+  keywords: ["Einbürgerungstest", "тест на гражданство Германии", "Einbürgerungstest на русском", "einbuergerungstest russisch", "гражданство Германии тест", "Leben in Deutschland Test"],
+  openGraph: {
+    title: "Einbürgerungstest на русском — 300 вопросов с переводом",
+    description: "Бесплатная подготовка к тесту на гражданство Германии. Все вопросы с русским переводом и объяснениями.",
+    type: "website",
+  },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
